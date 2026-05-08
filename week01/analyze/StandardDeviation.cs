@@ -28,7 +28,7 @@ public static class StandardDeviation {
 
         var variance = sumSquaredDifferences / count;
         return Math.Sqrt(variance);
-    }
+    } //StandardDeviation1 is O(n) because the array is traversed twice separately.
 
     private static double StandardDeviation2(int[] numbers) {
         var sumSquaredDifferences = 0.0;
@@ -48,7 +48,7 @@ public static class StandardDeviation {
 
         var variance = sumSquaredDifferences / countNumbers;
         return Math.Sqrt(variance);
-    }
+    } //StandardDeviation2 is O(n²) because it uses nested loops.
 
     private static double StandardDeviation3(int[] numbers) {
         var count = numbers.Length;
@@ -60,5 +60,5 @@ public static class StandardDeviation {
 
         var variance = sumSquaredDifferences / count;
         return Math.Sqrt(variance);
-    }
+    } //StandardDeviation3 is O(n) because Sum() traverses the array once and the foreach loop traverses it again.    
 }
