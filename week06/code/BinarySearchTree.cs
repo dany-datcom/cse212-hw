@@ -11,12 +11,11 @@ public class BinarySearchTree : IEnumerable<int>
     {
         // Create new node
         Node newNode = new(value);
-        // If the list is empty, then point both head and tail to the new node.
+
         if (_root is null)
         {
             _root = newNode;
         }
-        // If the list is not empty, then only head will be affected.
         else
         {
             _root.Insert(value);
@@ -38,7 +37,6 @@ public class BinarySearchTree : IEnumerable<int>
     /// </summary>
     IEnumerator IEnumerable.GetEnumerator()
     {
-        // call the generic version of the method
         return GetEnumerator();
     }
 
@@ -49,6 +47,7 @@ public class BinarySearchTree : IEnumerable<int>
     {
         var numbers = new List<int>();
         TraverseForward(_root, numbers);
+
         foreach (var number in numbers)
         {
             yield return number;
@@ -72,6 +71,7 @@ public class BinarySearchTree : IEnumerable<int>
     {
         var numbers = new List<int>();
         TraverseBackward(_root, numbers);
+
         foreach (var number in numbers)
         {
             yield return number;
@@ -80,7 +80,14 @@ public class BinarySearchTree : IEnumerable<int>
 
     private void TraverseBackward(Node? node, List<int> values)
     {
-        // TODO Problem 3
+        // Problem 3
+
+        if (node is not null)
+        {
+            TraverseBackward(node.Right, values);
+            values.Add(node.Data);
+            TraverseBackward(node.Left, values);
+        }
     }
 
     /// <summary>
@@ -90,6 +97,7 @@ public class BinarySearchTree : IEnumerable<int>
     {
         if (_root is null)
             return 0;
+
         return _root.GetHeight();
     }
 
@@ -99,8 +107,10 @@ public class BinarySearchTree : IEnumerable<int>
     }
 }
 
-public static class IntArrayExtensionMethods {
-    public static string AsString(this IEnumerable array) {
+public static class IntArrayExtensionMethods
+{
+    public static string AsString(this IEnumerable array)
+    {
         return "<IEnumerable>{" + string.Join(", ", array.Cast<int>()) + "}";
     }
 }
